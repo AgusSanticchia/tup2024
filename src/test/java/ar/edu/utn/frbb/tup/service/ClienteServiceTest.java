@@ -7,9 +7,11 @@ import ar.edu.utn.frbb.tup.persistence.ClienteDao;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -18,19 +20,28 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ClienteServiceTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class ClienteServiceTest {
 
     @Mock
+    private ClienteDao clienteDao;
     private ClienteDao clienteDao;
 
     @InjectMocks
     private ClienteService clienteService;
+    @InjectMocks
+    private ClienteService clienteService;
 
     @BeforeAll
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
     public void setUp() {
         MockitoAnnotations.openMocks(this);
     }
@@ -57,13 +68,16 @@ public class ClienteServiceTest {
     public void testClienteAlreadyExistsException() throws ClienteAlreadyExistsException {
         Cliente pepeRino = new Cliente();
         pepeRino.setDni(26456437);
+        pepeRino.setDni(26456437);
         pepeRino.setNombre("Pepe");
         pepeRino.setApellido("Rino");
         pepeRino.setFechaNacimiento(LocalDate.of(1978, 3,25));
         pepeRino.setTipoPersona(TipoPersona.PERSONA_FISICA);
 
         when(clienteDao.find(26456437, false)).thenReturn(new Cliente());
+        when(clienteDao.find(26456437, false)).thenReturn(new Cliente());
 
+        assertThrows(ClienteAlreadyExistsException.class, () -> clienteService.darDeAltaCliente(pepeRino));
         assertThrows(ClienteAlreadyExistsException.class, () -> clienteService.darDeAltaCliente(pepeRino));
     }
 
