@@ -8,16 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
-public class ClienteInputProcessor extends BaseInputProcessor{
+public class ClienteInputProcessor extends BaseInputProcessor {
 
     @Autowired
     ClienteService clienteService;
 
-    public void altaCliente() {
+    public void altaCliente() throws ClienteAlreadyExistsException {
 
         // Ingreso de datos del Cliente
         Cliente cliente = new Cliente();
@@ -60,13 +58,10 @@ public class ClienteInputProcessor extends BaseInputProcessor{
         }
         cliente.setFechaNacimiento(fechaNacimiento);
 
-        try {
-            clienteService.darDeAltaCliente(cliente);
-        } catch (ClienteAlreadyExistsException e) {
-            System.out.println();
-            System.out.println();
-            System.out.println(e.getMessage());
-        }
+        // Almacenamiento del cliente   
+        clienteService.darDeAltaCliente(cliente);
+        System.out.println("Cliente dado de alta con exito!");
+        ShowInfoCliente.mostrarInfoCliente(cliente.getDni());
         clearScreen();
     }
 }

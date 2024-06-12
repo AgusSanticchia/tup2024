@@ -17,7 +17,6 @@ public class CuentaEntity extends BaseEntity{
 
     public CuentaEntity(Cuenta cuenta) {
         super(cuenta.getNumeroCuenta());
-        this.balance = cuenta.getBalance();
         this.tipoCuenta = cuenta.getTipoCuenta().toString();
         this.titular = cuenta.getTitular().getDni();
         this.fechaCreacion = cuenta.getFechaCreacion();

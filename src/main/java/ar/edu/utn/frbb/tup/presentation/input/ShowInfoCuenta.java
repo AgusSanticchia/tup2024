@@ -14,8 +14,9 @@ public class ShowInfoCuenta {
     public void mostrarInfoCuenta(long id) {
         Cuenta cuenta = cuentaService.find(id);
 
-        if(cuenta == null) {
+        if (cuenta == null) {
             System.out.println("Cuenta no encontrada!");
+            return;
         }
         System.out.println("Información de la Cuenta: ");
         System.out.println("Cuenta id: " + cuenta.getNumeroCuenta());

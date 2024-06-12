@@ -1,11 +1,9 @@
+
 package ar.edu.utn.frbb.tup.presentation.input;
 
-import ar.edu.utn.frbb.tup.model.Banco;
-import ar.edu.utn.frbb.tup.model.Cliente;
-import ar.edu.utn.frbb.tup.model.Cuenta;
-import org.springframework.beans.factory.annotation.Autowired;
+import ar.edu.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
+
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class MenuInputProcessor extends BaseInputProcessor{
@@ -23,7 +21,7 @@ public class MenuInputProcessor extends BaseInputProcessor{
         this.showInfoCliente = showInfoCliente;
     }
 
-    public void renderMenu() {
+    public void renderMenu() throws ClienteAlreadyExistsException {
 
         while (!exit) {
             System.out.println("Bienveido a la aplicación de Banco!");
@@ -33,7 +31,7 @@ public class MenuInputProcessor extends BaseInputProcessor{
             System.out.println("4. Mostrar información del Cliente.");
             System.out.println("5. Mostrar información de una Cuenta");
             System.out.println("6. Salir");
-            System.out.print("Ingrese su opción (1-4): ");
+            System.out.print("Ingrese su opción (1-6): ");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
@@ -45,9 +43,9 @@ public class MenuInputProcessor extends BaseInputProcessor{
                 case 2:
                     cuentaInputProcessor.altaCuenta();
                     break;
-//            case 3:
-//                performTransaction();
-//                break;
+                // case 3:
+                //     transactionInputProcessor.performTransaction();
+                //     break;
                 case 4:
                     System.out.println("Ingrese el dni del usuario que quiere mostrar: ");
                     long dni = Long.parseLong(scanner.nextLine());
@@ -62,7 +60,7 @@ public class MenuInputProcessor extends BaseInputProcessor{
                     exit = true;
                     break;
                 default:
-                    System.out.println("Opción inválida. Por favor seleccione 1-4.");
+                    System.out.println("Opción inválida. Por favor seleccione 1-6.");
             }
             clearScreen();
         }
