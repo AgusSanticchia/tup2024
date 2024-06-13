@@ -1,6 +1,7 @@
 package ar.edu.utn.frbb.tup.presentation.input;
 
 import ar.edu.utn.frbb.tup.model.Cliente;
+import ar.edu.utn.frbb.tup.model.Cuenta;
 import ar.edu.utn.frbb.tup.service.ClienteService;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ public class ShowInfoCliente {
         ShowInfoCliente.clienteService = clienteService;
     }
 
-    public static void mostrarInfoCliente(long dni) {
+    public void mostrarInfoCliente(long dni) {
         try {
             Cliente cliente = clienteService.buscarClientePorDni(dni);
 
@@ -25,11 +26,11 @@ public class ShowInfoCliente {
             System.out.println("Edad: " + cliente.getEdad());
 
 
-            if (cliente.getListaCuentas().isEmpty()) {
+            if (cliente.getCuentas().isEmpty()) {
                 System.out.println("El cliente no tiene cuentas asociadas.");
             } else {
                 System.out.println("Cuentas del Cliente: ");
-                for (long cuentaId : cliente.getListaCuentas()) {
+                for (Cuenta cuentaId : cliente.getCuentas()) {
                     System.out.println("Número de cuenta: " + cuentaId);
                 }
             }
