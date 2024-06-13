@@ -1,12 +1,9 @@
 package ar.edu.utn.frbb.tup.presentation.input;
 
-import ar.edu.utn.frbb.tup.model.Cliente;
 import ar.edu.utn.frbb.tup.model.Cuenta;
 import ar.edu.utn.frbb.tup.model.TipoCuenta;
 import ar.edu.utn.frbb.tup.model.TipoMoneda;
-import ar.edu.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
 import ar.edu.utn.frbb.tup.model.exception.CuentaAlreadyExistsException;
-import ar.edu.utn.frbb.tup.model.exception.TipoCuentaAlreadyExistsException;
 import ar.edu.utn.frbb.tup.model.exception.TipoCuentaSoportadaException;
 import ar.edu.utn.frbb.tup.persistence.CuentaDao;
 import ar.edu.utn.frbb.tup.service.ClienteService;
@@ -62,9 +59,6 @@ public class CuentaInputProcessor extends BaseInputProcessor{
         try {
             cuentaService.darDeAltaCuenta(cuenta, dniTitular);
             System.out.println("Cuenta creada con éxito");
-        } catch (TipoCuentaAlreadyExistsException e){
-            System.out.println("Error: " + e.getMessage());
-            return;
         } catch (CuentaAlreadyExistsException e) {
             throw new RuntimeException(e);
         } catch (Exception e) {

@@ -12,9 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -28,8 +25,6 @@ public class CuentaServiceTest {
 
     @InjectMocks
     private CuentaService cuentaService;
-    private Set<TipoCuenta> tiposCuentaSoportados;
-
     @BeforeEach
     public void setUp() {}
 

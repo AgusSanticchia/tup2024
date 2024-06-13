@@ -13,7 +13,7 @@ public class ShowInfoCliente {
         ShowInfoCliente.clienteService = clienteService;
     }
 
-    public void mostrarInfoCliente(long dni) {
+    public static void mostrarInfoCliente(long dni) {
         try {
             Cliente cliente = clienteService.buscarClientePorDni(dni);
 
@@ -25,7 +25,6 @@ public class ShowInfoCliente {
             System.out.println("Fecha de nacimiento: " + cliente.getFechaNacimiento());
             System.out.println("Edad: " + cliente.getEdad());
 
-
             if (cliente.getCuentas().isEmpty()) {
                 System.out.println("El cliente no tiene cuentas asociadas.");
             } else {
@@ -33,15 +32,6 @@ public class ShowInfoCliente {
                 for (Cuenta cuentaId : cliente.getCuentas()) {
                     System.out.println("Número de cuenta: " + cuentaId);
                 }
-            }
-            if(cliente.getCuentas().isEmpty()) {
-            System.out.println("El cliente no tiene cuentas asociadas.");
-            } else {
-                System.out.println("Cuentas del Cliente: ");
-                System.out.println(cliente.getCuentas());
-            for (Cuenta cuenta : cliente.getCuentas()) {
-                System.out.println("Número de cuenta: " + cuenta.toString());
-
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());

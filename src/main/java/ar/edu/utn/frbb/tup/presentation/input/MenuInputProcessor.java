@@ -2,6 +2,7 @@
 package ar.edu.utn.frbb.tup.presentation.input;
 
 import ar.edu.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
+import ar.edu.utn.frbb.tup.model.exception.TipoCuentaSoportadaException;
 
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ public class MenuInputProcessor extends BaseInputProcessor{
         this.showInfoCliente = showInfoCliente;
     }
 
-    public void renderMenu() throws ClienteAlreadyExistsException {
+    public void renderMenu() throws ClienteAlreadyExistsException, TipoCuentaSoportadaException {
 
         while (!exit) {
             System.out.println("Bienveido a la aplicación de Banco!");
@@ -44,12 +45,12 @@ public class MenuInputProcessor extends BaseInputProcessor{
                     cuentaInputProcessor.altaCuenta();
                     break;
                 // case 3:
-                //     transactionInputProcessor.performTransaction();
-                //     break;
+                // transactionInputProcessor.performTransaction();
+                // break;
                 case 4:
                     System.out.println("Ingrese el dni del usuario que quiere mostrar: ");
                     long dni = Long.parseLong(scanner.nextLine());
-                    showInfoCliente.mostrarInfoCliente(dni);
+                    ShowInfoCliente.mostrarInfoCliente(dni);
                     break;
                 case 5:
                     System.out.println("Ingrese el id de la cuenta que quiere mostrar: ");
