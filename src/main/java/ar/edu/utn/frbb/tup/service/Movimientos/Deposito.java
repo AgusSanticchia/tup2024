@@ -1,4 +1,4 @@
-package ar.edu.utn.frbb.tup.model.Movimientos;
+package ar.edu.utn.frbb.tup.service.Movimientos;
 
 public class Deposito {
 }
