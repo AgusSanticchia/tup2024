@@ -1,22 +1,11 @@
 package ar.edu.utn.frbb.tup;
 
-import ar.edu.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
-import ar.edu.utn.frbb.tup.model.exception.TipoCuentaSoportadaException;
-import ar.edu.utn.frbb.tup.presentation.input.MenuInputProcessor;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.springframework.beans.BeansException;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+@SpringBootApplication
+public class Application {
 
-class Application {
-
-    public static void main(String[] args) throws TipoCuentaSoportadaException {
-        try (ConfigurableApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class)) {
-            MenuInputProcessor processor = applicationContext.getBean(MenuInputProcessor.class);
-
-            processor.renderMenu();
-        } catch (BeansException | ClienteAlreadyExistsException e) {
-            e.printStackTrace();
-        }
+    public static void main(String args[]) {
+        SpringApplication.run(Application.class, args);
     }
-}

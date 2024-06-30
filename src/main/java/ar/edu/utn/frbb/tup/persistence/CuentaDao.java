@@ -2,10 +2,11 @@ package ar.edu.utn.frbb.tup.persistence;
 
 import ar.edu.utn.frbb.tup.model.Cuenta;
 import ar.edu.utn.frbb.tup.persistence.entity.CuentaEntity;
-
+import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CuentaDao  extends AbstractBaseDao{
     @Override
     protected String getEntityName() {
