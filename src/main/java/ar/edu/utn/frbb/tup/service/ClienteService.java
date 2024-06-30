@@ -16,7 +16,7 @@ public class ClienteService {
         this.clienteDao = clienteDao;
     }
 
-    public void darDeAltaCliente(Cliente cliente) throws ClienteAlreadyExistsException {
+    public void darDeAltaCliente(ClienteDTO cliente) throws ClienteAlreadyExistsException {
 
         if (clienteDao.find(cliente.getDni(), false) != null) {
             throw new ClienteAlreadyExistsException("Ya existe un cliente con DNI " + cliente.getDni());
